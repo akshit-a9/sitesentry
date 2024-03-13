@@ -14,27 +14,32 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const VisitorSignIn(),
+      home: const VisitorSignInScreen(),
     );
   }
 }
 
-class VisitorSignIn extends StatelessWidget {
-  const VisitorSignIn({Key? key}) : super(key: key);
+class VisitorSignInScreen extends StatelessWidget {
+  const VisitorSignInScreen({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Image.asset(
+          'assets/dg.png',
+          height: 25,
+          fit: BoxFit.contain,
+        ),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
-            Image.asset('assets/dg.png', height: 50), // Replace with your asset
-            const SizedBox(height: 20),
             const Text(
               'Sign In With DigiLocker',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -43,13 +48,13 @@ class VisitorSignIn extends StatelessWidget {
             const SizedBox(height: 40),
             TextFormField(
               decoration: InputDecoration(
-                hintText: 'Enter Phone No/ Aadhar',
+                hintText: 'Enter Phone No/ Aadhaar',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.purple.shade100,
+                fillColor: Color(0xffD1C7FE),
               ),
             ),
             const SizedBox(height: 20),
@@ -61,18 +66,18 @@ class VisitorSignIn extends StatelessWidget {
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.purple.shade100,
+                fillColor: Color(0xffD1C7FE),
               ),
             ),
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {},
-              child: const Text(
+              child: Text(
                   'Sign In',
                   style: TextStyle(color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
+                backgroundColor: Color(0xff9279FF),
                 padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
