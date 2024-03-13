@@ -9,7 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:untitled/backend.dart';
 
 class StudentPage extends StatefulWidget {
-  const StudentPage({Key? key}) : super(key: key);
+  final String role;
+  const StudentPage({Key? key, required this.role}) : super(key: key);
 
   @override
   _StudentPageState createState() => _StudentPageState();
@@ -17,10 +18,12 @@ class StudentPage extends StatefulWidget {
 
 class _StudentPageState extends State<StudentPage> {
   Uint8List? qrCodeImage;
+  late String selectedRole;
 
   @override
   void initState() {
     super.initState();
+    selectedRole = widget.role;
     _fetchAndSetQRCodeImage();
   }
 
@@ -38,6 +41,21 @@ class _StudentPageState extends State<StudentPage> {
   String generateRandomNumber() {
     Random random = Random();
     return (100000 + random.nextInt(900000)).toString();
+  }
+
+  Color _getColorBasedOnRole(String role) {
+    switch (role) {
+      case 'Student':
+        return Colors.red;
+      case 'Faculty':
+        return Colors.blue;
+      case 'Security':
+        return Colors.green;
+      case 'Admin':
+        return Colors.orange;
+      default:
+        return Colors.grey;
+    }
   }
 
   @override
@@ -71,7 +89,7 @@ class _StudentPageState extends State<StudentPage> {
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: _getColorBasedOnRole(selectedRole),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Column(

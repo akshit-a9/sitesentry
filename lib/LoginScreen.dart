@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Student.dart';
+import 'package:untitled/card.dart';
 import 'package:untitled/visitor.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:untitled/card.dart';
+import 'package:untitled/visitor.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String selectedRole = 'Student'; // Variable to store the selected role
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +81,14 @@ class LoginScreen extends StatelessWidget {
                         borderSide: const BorderSide(color: Colors.blue),
                       ),
                     ),
-                    value: 'Student',
-                    onChanged: (String? newValue) {},
+                    value: selectedRole,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        setState(() {
+                          selectedRole = newValue; // Update selectedRole
+                        });
+                      }
+                    },
                     items: <String>['Student', 'Faculty', 'Security', 'Admin']
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -151,7 +168,9 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => StudentPage(),
+                          builder: (context) => StudentPage(
+                              role:
+                                  selectedRole), // Pass selectedRole to StudentPage
                         ),
                       );
                     },
